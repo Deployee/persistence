@@ -47,6 +47,14 @@ class LazyPDO
         $this->options = $options;
     }
 
+    /**
+     * @return string
+     */
+    public function getConnectionType(): string
+    {
+        return substr($this->dsn, 0, strpos($this->dsn, ':'));
+    }
+
     public function __call($name, $arguments)
     {
         return call_user_func_array([$this->pdo(), $name], $arguments);
