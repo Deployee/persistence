@@ -47,38 +47,6 @@ class LazyPDO
         $this->options = $options;
     }
 
-    /**
-     * @return string
-     */
-    public function getConnectionType(): string
-    {
-        return substr($this->dsn, 0, strpos($this->dsn, ':'));
-    }
-
-    /**
-     * @return string
-     */
-    public function getDatabase(): string
-    {
-        return substr($this->dsn, strrpos($this->dsn, '='));
-    }
-
-    /**
-     * @return string
-     */
-    public function getUsername(): string
-    {
-        return $this->username;
-    }
-
-    /**
-     * @return string
-     */
-    public function getPassword(): string
-    {
-        return $this->password;
-    }
-
     public function __call($name, $arguments)
     {
         return call_user_func_array([$this->pdo(), $name], $arguments);
