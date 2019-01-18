@@ -41,10 +41,22 @@ class LazyPDO
      */
     public function __construct(string $dsn, string $username = '', string $password = '', array $options = [])
     {
+        $this->changeConnection($dsn, $username, $password, $options);
+    }
+
+    /**
+     * @param string $dsn
+     * @param string $username
+     * @param string $password
+     * @param array $options
+     */
+    public function changeConnection(string $dsn, string $username = '', string $password = '', array $options = [])
+    {
         $this->dsn = $dsn;
         $this->username = $username;
         $this->password = $password;
         $this->options = $options;
+        $this->pdo = null;
     }
 
     public function __call($name, $arguments)
